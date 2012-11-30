@@ -315,9 +315,6 @@ function setup_eventBinding() {
 		var twitterParam = thisUrl + "?" + compressedParam;
 		twitterParam = encodeURIComponent(twitterParam)
 
-		// [!] TEST: パラメータを出力
-		console.log(compressedParam);
-
 		// 先に空のウィンドウを開いておく
 		var win = window.open();
 
