@@ -228,7 +228,6 @@ function setup_bootstrapButton() {
 				$(this).addClass("active").html(onText).val(1);
 			}
 			// Canvas パラメータを変更
-			// Canvas パラメータを変更
 			var elementId = $(this).attr("id");
 			changeCanvasParam(elementId);
 		});
@@ -425,14 +424,17 @@ function changeCanvasParam(elementId) {
 
 
 	// syncLeftRightFlag がオンになったとき、Leftの設定をRightにコピーする
-	var leftToRigthAllCopy = (function() {
+	var leftToRightAllCopy = (function() {
 		if (elementId != "syncLeftRightFlag") {
 			return false;
 		}
+		if( $("#syncLeftRightFlag").val() == "0") {
+			return false;
+		}
+
 		var allTargetId = jsObjToHtmlIdArray(locusParam[0], "locusParam-0");
 		for (var i=0; i<allTargetId.length; i++) {
 			leftToRightOneCopy(allTargetId[i]);
-
 		}
 		// 180度ずらす
 		var angle = locusParam[0].rotation.angle.hand + 180;
