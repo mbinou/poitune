@@ -20,10 +20,10 @@ var commonParam = {
 	numberOfLocus   : 1,
 	speedRate       : 1,
 	scale           : 1,
-	backgroundColor : "#000",
+	backgroundColor : "#000000",
 	glid            : {
 		showFlag : 0,
-		color    : "#333",
+		color    : "#333333",
 		size     : {
 			small  : 0.2,
 			medium : 0.5,
