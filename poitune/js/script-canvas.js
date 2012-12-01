@@ -97,6 +97,48 @@ locusParam[1].rotation.angle = {
 };
 
 
+// FPSの計算
+var Fps = function (targetFps) {
+	this.targetFps   = targetFps;        // 目標FPS
+	this.interval    = 1000 / targetFps; // ループ処理のインターバル
+	this.minInterval = 5;                // 最小インターバル
+	this.checkpoint  = new Date();       // 計算のために時間を保持する変数
+	this.fps         = 0;
+};
+Fps.prototype = {
+
+	// checkからcheckまでの時間を元にFPSを計算
+	check: function() {
+		var now = new Date();
+		this.fps = 1000 / (now - this.checkpoint);
+		this.checkpoint = new Date();
+	},
+
+	// 現在のFPSを取得
+	getFps: function() {
+		return this.fps.toFixed(0);
+	},
+
+	// FPSの値をセット
+	setFps: function(targetFps) {
+		this.targetFps = targetFps;
+		this.interval = 1000 / targetFps;
+		return false;
+	},
+
+
+	// 次回処理までのインターバルを取得
+	getInterval: function() {
+		// ループ処理の内部でかかった時間
+		var elapsed = new Date() - this.checkpoint;
+		// setTimeout に与えるべき間隔
+		var intervalForSetTimout = this.interval - elapsed;
+		return intervalForSetTimout > this.minInterval ? intervalForSetTimout : this.minInterval;
+	}
+
+};
+
+
 
 window.onload = function() {
 	init();
@@ -115,23 +157,51 @@ function init() {
 		poi_angle_hold[i] = locusParam[i].rotation.angle.poi;
 	}
 
-	var animation = function() {
-		var interval = 1000 / commonParam.fps;
+	/*
+	// Statsの初期化
+	// 実際のFPSの測定
+	var stats = new Stats();
+	stats.domElement.style.position = "fixed";
+	stats.domElement.style.right    = "5px";
+	stats.domElement.style.top      = "50px";
+	document.body.appendChild(stats.domElement);
+	*/
 
+	// アニメーション処理
+	var fps = new Fps(commonParam.fps);
+	var animation = function() {
+		fps.check();
+		fps.setFps(commonParam.fps);
+
+		// 残像クリア
 		if (canvasAfterimageResetFlag == 1) {
 			canvasAfterimageReset();
 			canvasAfterimageResetFlag = 0;
 		}
 
+		// 次のフレームの描画
 		clearCanvas();
 		if (commonParam.glid.showFlag) {
 			drawGlid();
 		}
 		drawFrame();
 
-		setTimeout(animation, interval);
+		// ローカルファイルで実行されている場合は実測FPS値を表示
+		if (location.protocol == "file:") {
+			checkFps(fps);
+		}
+
+		setTimeout(animation, fps.getInterval());
 	}
 	animation();
+}
+
+
+function checkFps(fps) {
+	ctx.beginPath();
+	ctx.fillStyle = "#ffffff";
+	ctx.font = "17px 'メイリオ'";
+	ctx.fillText('FPS : ' + fps.getFps(), 10, 20);
 }
 
 
@@ -261,7 +331,6 @@ function getDrawObj(i) {
 	var hand_x;
 	var hand_y;
 	var poi_r;
-	//var poi_angle;
 	var poi_x;
 	var poi_y;
 
