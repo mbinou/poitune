@@ -317,7 +317,11 @@ function setup_eventBinding() {
 		// 先に空のウィンドウを開いておく
 		var win = window.open();
 
-		var beforeText = "ポイの軌道をシミュレートしたよ！ ";
+		if (location.pathname == "/english.html") {
+			var beforeText = "POI Simutaion I created! ";
+		} else {
+			var beforeText = "ポイの軌道をシミュレートしたよ！ ";
+		}
 		var afterText = " - by #Poitune";
 		getBitlyUrl(twitterParam, function(shortedUrl) {
 			// 非同期処理での callback 関数の中になるので、この中で window.open() はポップアップブロックされて効かない。
