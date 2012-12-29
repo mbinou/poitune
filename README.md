@@ -1,4 +1,4 @@
 poitune
 =======
 
-Simulating poi flowers on Web page.
+Poi flower's simulator on Web page.
