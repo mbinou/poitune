@@ -1,520 +1,537 @@
 <!DOCTYPE HTML>
 <html lang="jp">
-<head>
-	<meta charset="UTF-8">
-	<title>Poitune</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="description" content="ポイの軌道シミュレーションサイト">
-	<meta name="viewport" content="width=device-width">
+    <head>
+        <meta charset="UTF-8">
+        <title>Poitune</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="ポイの軌道シミュレーションサイト">
+        <meta name="viewport" content="width=device-width">
 
-	<!--[if IE]><script src="js/excanvas.compiled.js" type="text/javascript"></script><![endif]-->
-	<!-- <script src="https://raw.github.com/mrdoob/stats.js/master/src/Stats.js"></script> -->
-	<link rel="shortcut icon" href="img/favicon.ico">
-	<link media="all" rel="stylesheet" href="css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" />
-	<link media="all" rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-	<link media="all" rel="stylesheet" href="css/farbtastic/farbtastic.css" type="text/css" />
-	<link media="all" rel="stylesheet/less" href="css/style.less" type="text/css" />
-	<script src="js/check_lang.js" type="text/javascript"></script>
-	<script src="js/less-1.3.1.min.js" type="text/javascript"></script>
-	<script src="js/jquery-1.8.2.js" type="text/javascript"></script>
-	<script src="js/jquery.scrollTo.js" type="text/javascript"></script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-	<script src="js/farbtastic.mod.js" type="text/javascript"></script>
-	<script src="js/script-ui.js" type="text/javascript"></script>
-	<script src="js/script-canvas.js" type="text/javascript"></script>
-	<script src="js/script-exampleParam.js" type="text/javascript"></script>
-	<script src="js/analytics.js" type="text/javascript"></script>
-</head>
-<body>
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<span class="brand">Poitune</span>
-				<ul class="nav">
-					<li class="active"><a href="./">Home</a></li>
-					<li><a href="./english.html">English Ver</a></li>
-					<li><a href="./mw/">技一覧Wiki</a></li>
-					<li><a href="./join.html">Join</a></li>
-					<li><a href="./about.html">About</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="header-home">
-			<h1>Poitune</h1>
-			<p>Simutating poi flowers.</p>
-		</div>
-		<hr>
-		<div class="scroller-tab well">
-			<div id="scroller-header">
-				<p>
-				<button id="syncLeftRightFlag" type="button" class="btn" value="0"><i class="icon-refresh"></i> Sync L-R OFF</button>
-				<span class="badge"><a href="#" rel="tooltip" title="Left と Right の設定を同期させるかを指定する。<br>１．同期をオンにしたその時点での同期方法は、Left が同期元となり Left の設定が Right に同様に反映される。<br>２．同期設定がすでにオンになっている状態では Left と Right のどちらを変更しても、その設定が他方にも反映される。<br>３．ただし初期角度のみ一方で設定した角度に180度加えた値を反映する。">?</a></span>
-				</p>
-				<div id="radio-tab">
-					<a href="#panel-1" id="radio-tab-1" rel="panel" name="radio">General</a>
-					<a href="#panel-2" id="radio-tab-2" rel="panel" name="radio">Left</a>
-					<a href="#panel-3" id="radio-tab-3" rel="panel" name="radio">Right</a>
-					<a href="#panel-4" id="radio-tab-4" rel="panel" name="radio">Examples</a>
-				</div>
-			</div>
-			<div id="scroller-body">
-				<div id="mask">
-					<div id="panel">
-						<div id="panel-1">
-							<div id="tabs-general">
-								<ul>
-									<li><a href="#tabs-general-1">共通設定</a></li>
-								</ul>
-								<div id="tabs-general-1">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt><a href="#" rel="tooltip" title="単位時間あたりのフレーム数を指定する。<br>値が大きいほどアニメーションはなめらかになる。">FPS</a></dt>
-											<dd>
-											<input type="text" id="commonParam-fps" class="inputVal" placeholder="">
-											<span id="commonParam-fps-slider" class="slider"></span>
+        <!--[if IE]><script src="js/excanvas.compiled.js" type="text/javascript"></script><![endif]-->
+        <!-- <script src="https://raw.github.com/mrdoob/stats.js/master/src/Stats.js"></script> -->
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <link media="all" rel="stylesheet" href="css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" />
+        <link media="all" rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link media="all" rel="stylesheet" href="css/farbtastic/farbtastic.css" type="text/css" />
+        <link media="all" rel="stylesheet/less" href="css/style.less" type="text/css" />
+        <script src="js/check_lang.js" type="text/javascript"></script>
+        <script src="js/less-1.3.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+        <script src="js/jquery.scrollTo.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+        <script src="js/farbtastic.mod.js" type="text/javascript"></script>
+        <script src="js/script-ui.js" type="text/javascript"></script>
+        <script src="js/script-canvas.js" type="text/javascript"></script>
+        <script src="js/script-exampleParam.js" type="text/javascript"></script>
+        <script src="js/analytics.js" type="text/javascript"></script>
+        <meta property="og:title" content="ポイの軌道シミュレーター">
+        <meta property="og:site_name" content="Poitune">
+        <meta property="og:description" content="あらゆる基本的なポイの軌道をWeb上でシミュレートできるサイト。">
+        <meta property="og:image" content="http://poitune.wktk.so/img/og_image.png">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://poitune.wktk.so/">
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <span class="brand">Poitune</span>
+                    <ul class="nav">
+                        <li class="active"><a href="./">Home</a></li>
+                        <li><a href="./english.html">English Ver</a></li>
+                        <li><a href="./mw/">技一覧Wiki</a></li>
+                        <li><a href="./join.html">Join</a></li>
+                        <li><a href="./about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-home">
+                <h1>Poitune</h1>
+                <p>Poi flowers simulator.</p>
+            </div>
+            <hr>
+            <div class="scroller-tab well">
+                <div id="scroller-header">
+                    <p>
+                    <button id="syncLeftRightFlag" type="button" class="btn" value="0"><i class="icon-refresh"></i> Sync L-R OFF</button>
+                    <span class="badge"><a href="#" rel="tooltip" title="Left と Right の設定を同期させるかを指定する。<br>１．同期をオンにしたその時点での同期方法は、Left が同期元となり Left の設定が Right に同様に反映される。<br>２．同期設定がすでにオンになっている状態では Left と Right のどちらを変更しても、その設定が他方にも反映される。<br>３．ただし初期角度のみ一方で設定した角度に180度加えた値を反映する。">?</a></span>
+                    </p>
+                    <div id="radio-tab">
+                        <a href="#panel-1" id="radio-tab-1" rel="panel" name="radio">General</a>
+                        <a href="#panel-2" id="radio-tab-2" rel="panel" name="radio">Left</a>
+                        <a href="#panel-3" id="radio-tab-3" rel="panel" name="radio">Right</a>
+                        <a href="#panel-4" id="radio-tab-4" rel="panel" name="radio">Examples</a>
+                    </div>
+                </div>
+                <div id="scroller-body">
+                    <div id="mask">
+                        <div id="panel">
+                            <div id="panel-1">
+                                <div id="tabs-general">
+                                    <ul>
+                                        <li><a href="#tabs-general-1">共通設定</a></li>
+                                    </ul>
+                                    <div id="tabs-general-1">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt><a href="#" rel="tooltip" title="単位時間あたりのフレーム数を指定する。<br>値が大きいほどアニメーションはなめらかになる。">FPS</a></dt>
+                                                <dd>
+                                                <input type="text" id="commonParam-fps" class="inputVal" placeholder="">
+                                                <span id="commonParam-fps-slider" class="slider"></span>
 
-											</dd>
-											<dt><a href="#" rel="tooltip" title="残像の強度を 0 から 1 の間で指定する。<br>・0 にすると残像は全く生まれない。<br>・1 にすると全ての像が消えずに残り続ける。<br>・前に描画した像が残ったままになっている場合は、一度残像の強度を下げると残像は正しく消える。">残像</a></dt>
-											<dd>
-											<input type="text" id="commonParam-afterimage" class="inputVal" placeholder="">
-											<span id="commonParam-afterimage-slider" class="slider"></span>
-											</dd>
-											<dt><a href="#" rel="tooltip" title="回転速度の倍率を 1/10 倍から 10 倍の間で指定する。<br>スライダーは線形ではなく対数軸。">速度率</a></dt>
-											<dd>
-											<input type="text" id="commonParam-speedRate" class="inputVal" placeholder="">
-											<span id="commonParam-speedRate-slider" class="slider"></span>
-											</dd>
-											<dt><a href="#" rel="tooltip" title="軌道の大きさの倍率を 1/10 倍から 10 倍の間で指定する。<br>スライダーは線形ではなく対数軸。">拡大率</a></dt>
-											<dd>
-											<input type="text" id="commonParam-scale" class="inputVal" placeholder="">
-											<span id="commonParam-scale-slider" class="slider"></span>
-											</dd>
-											<dt><a href="#" rel="tooltip" title="両方の軌道を表示するか、片方のみを表示するかを指定する。<br>片方を指定した場合は Left の軌道のみが表示される。">表示数</a></dt>
-											<dd>
-											<span id="commonParam-numberOfLocus" class="btn-group buttonset-radio">
-												<button type="button" value="2" class="btn">両方</button>
-												<button type="button" value="1" class="btn">片方</button>
-											</span>
-											</dd>
-											<dt>背景色</dt>
-											<dd>
-											<input type="text" id="commonParam-backgroundColor" class="colorwell-general-1 inputVal" placeholder="">
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">グリッド</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>表示</dt>
-											<dd>
-											<button id="commonParam-glid-showFlag" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>カラー</dt>
-											<dd>
-											<input type="text" id="commonParam-glid-color" class="colorwell-general-1 inputVal" placeholder="">
-											</dd>
-										</dl>
-										<div id="colorpicker-general-1"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="panel-2">
-							<div id="tabs-left">
-								<ul>
-									<li><a href="#tabs-left-1">物体</a></li>
-									<li><a href="#tabs-left-2">回転</a></li>
-									<li><a href="#tabs-left-3">線分</a></li>
-								</ul>
-								<div id="tabs-left-1">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">表示</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>原点</dt>
-											<dd>
-											<button id="locusParam-0-object-showFlag-origin" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>手</dt>
-											<dd>
-											<button id="locusParam-0-object-showFlag-hand" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<button id="locusParam-0-object-showFlag-poi" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt class="dt-column"><span class="label">サイズ</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>原点</dt>
-											<dd>
-											<input type="text" id="locusParam-0-object-size-origin" class="inputVal" placeholder="">
-											<span id="locusParam-0-object-size-origin-slider" class="slider"></span>
-											</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-0-object-size-hand" class="inputVal" placeholder="">
-											<span id="locusParam-0-object-size-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-0-object-size-poi" class="inputVal" placeholder="">
-											<span id="locusParam-0-object-size-poi-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">カラー</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>原点</dt>
-											<dd>
-											<input type="text" id="locusParam-0-object-color-origin" class="colorwell-left-1 inputVal" placeholder="">
-											</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-0-object-color-hand" class="colorwell-left-1 inputVal" placeholder="">
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-0-object-color-poi" class="colorwell-left-1 inputVal" placeholder="">
-											</dd>
-										</dl>
-										<div id="colorpicker-left-1"></div>
-									</div>
-								</div>
-								<div id="tabs-left-2">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">半径</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-radius-hand" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-radius-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-radius-poi" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-radius-poi-slider" class="slider"></span>
-											</dd>
-											<dt class="dt-column"><span class="label">角速度</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-angularVelocity-hand" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-angularVelocity-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-angularVelocity-poi" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-angularVelocity-poi-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">初期角度</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-angle-hand" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-angle-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-angle-poi" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-angle-poi-slider" class="slider"></span>
-											</dd>
-											<dt class="dt-column"><span class="label">原点座標</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>X</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-coordinates-origin-x" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-coordinates-origin-x-slider" class="slider"></span>
-											</dd>
-											<dt>Y</dt>
-											<dd>
-											<input type="text" id="locusParam-0-rotation-coordinates-origin-y" class="inputVal" placeholder="">
-											<span id="locusParam-0-rotation-coordinates-origin-y-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-								</div>
-								<div id="tabs-left-3">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">表示</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>腕</dt>
-											<dd>
-											<button id="locusParam-0-segment-showFlag-arm" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>コード</dt>
-											<dd>
-											<button id="locusParam-0-segment-showFlag-chain" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt class="dt-column"><span class="label">サイズ</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>腕</dt>
-											<dd>
-											<input type="text" id="locusParam-0-segment-size-arm" class="inputVal" placeholder="">
-											<span id="locusParam-0-segment-size-arm-slider" class="slider"></span>
-											</dd>
-											<dt>コード</dt>
-											<dd>
-											<input type="text" id="locusParam-0-segment-size-chain" class="inputVal" placeholder="">
-											<span id="locusParam-0-segment-size-chain-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">カラー</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>腕</dt>
-											<dd>
-											<input type="text" id="locusParam-0-segment-color-arm" class="colorwell-left-3 inputVal" placeholder="">
-											</dd>
-											<dt>コード</dt>
-											<dd>
-											<input type="text" id="locusParam-0-segment-color-chain" class="colorwell-left-3 inputVal" placeholder="">
-											</dd>
-										</dl>
-										<div id="colorpicker-left-3"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="panel-3">
-							<div id="tabs-right">
-								<ul>
-									<li><a href="#tabs-right-1">物体</a></li>
-									<li><a href="#tabs-right-2">回転</a></li>
-									<li><a href="#tabs-right-3">線分</a></li>
-								</ul>
-								<div id="tabs-right-1">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">表示</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>原点</dt>
-											<dd>
-											<button id="locusParam-1-object-showFlag-origin" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>手</dt>
-											<dd>
-											<button id="locusParam-1-object-showFlag-hand" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<button id="locusParam-1-object-showFlag-poi" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt class="dt-column"><span class="label">サイズ</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>原点</dt>
-											<dd>
-											<input type="text" id="locusParam-1-object-size-origin" class="inputVal" placeholder="">
-											<span id="locusParam-1-object-size-origin-slider" class="slider"></span>
-											</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-1-object-size-hand" class="inputVal" placeholder="">
-											<span id="locusParam-1-object-size-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-1-object-size-poi" class="inputVal" placeholder="">
-											<span id="locusParam-1-object-size-poi-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">カラー</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>原点</dt>
-											<dd>
-											<input type="text" id="locusParam-1-object-color-origin" class="colorwell-right-1 inputVal" placeholder="">
-											</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-1-object-color-hand" class="colorwell-right-1 inputVal" placeholder="">
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-1-object-color-poi" class="colorwell-right-1 inputVal" placeholder="">
-											</dd>
-										</dl>
-										<div id="colorpicker-right-1"></div>
-									</div>
-								</div>
-								<div id="tabs-right-2">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">半径</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-radius-hand" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-radius-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-radius-poi" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-radius-poi-slider" class="slider"></span>
-											</dd>
-											<dt class="dt-column"><span class="label">角速度</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-angularVelocity-hand" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-angularVelocity-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-angularVelocity-poi" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-angularVelocity-poi-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">初期角度</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>手</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-angle-hand" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-angle-hand-slider" class="slider"></span>
-											</dd>
-											<dt>ポイ</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-angle-poi" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-angle-poi-slider" class="slider"></span>
-											</dd>
-											<dt class="dt-column"><span class="label">原点座標</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>X</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-coordinates-origin-x" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-coordinates-origin-x-slider" class="slider"></span>
-											</dd>
-											<dt>Y</dt>
-											<dd>
-											<input type="text" id="locusParam-1-rotation-coordinates-origin-y" class="inputVal" placeholder="">
-											<span id="locusParam-1-rotation-coordinates-origin-y-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-								</div>
-								<div id="tabs-right-3">
-									<div class="tabs-inner-left">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">表示</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>腕</dt>
-											<dd>
-											<button id="locusParam-1-segment-showFlag-arm" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt>コード</dt>
-											<dd>
-											<button id="locusParam-1-segment-showFlag-chain" type="button" class="btn button-toggle" value="0">OFF</button>
-											</dd>
-											<dt class="dt-column"><span class="label">サイズ</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>腕</dt>
-											<dd>
-											<input type="text" id="locusParam-1-segment-size-arm" class="inputVal" placeholder="">
-											<span id="locusParam-1-segment-size-arm-slider" class="slider"></span>
-											</dd>
-											<dt>コード</dt>
-											<dd>
-											<input type="text" id="locusParam-1-segment-size-chain" class="inputVal" placeholder="">
-											<span id="locusParam-1-segment-size-chain-slider" class="slider"></span>
-											</dd>
-										</dl>
-									</div>
-									<div class="tabs-inner-right">
-										<dl class="dl-horizontal">
-											<dt class="dt-column"><span class="label">カラー</span></dt>
-											<dd class="dd-column">&nbsp;</dd>
-											<dt>腕</dt>
-											<dd>
-											<input type="text" id="locusParam-1-segment-color-arm" class="colorwell-right-3 inputVal" placeholder="">
-											</dd>
-											<dt>コード</dt>
-											<dd>
-											<input type="text" id="locusParam-1-segment-color-chain" class="colorwell-right-3 inputVal" placeholder="">
-											</dd>
-										</dl>
-										<div id="colorpicker-right-3"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="panel-4">
-							<div id="tabs-examples">
-								<ul>
-									<li><a href="#tabs-examples-1">Examples</a></li>
-								</ul>
-								<div id="tabs-examples-1">
-									<div class="tabs-inner-left">
-										<h3>Poi trick examples</h3>
-										<ul id="examples-menu">
-											<li><a href="#">Clover</a></li>
-											<li><a href="#">Negative Clover</a></li>
-											<li><a href="#">Pentagram</a></li>
-											<li><a href="#">Clear Pentagram</a></li>
-											<li><a href="#">Hexagram</a></li>
-											<li><a href="#">Clear Hexagram</a></li>
-											<li><a href="#">Cat Eye</a></li>
-											<li><a href="#">Linear Cat Eye</a></li>
-											<li><a href="#">Isolation</a></li>
-										</ul>
-										<br>
-									</div>
-									<div class="tabs-inner-right">
-										<h4>Settings' hints</h4>
-										<ul>
-											<li>半径<br>比はいくらか</li>
-											<li>角速度<br>比はいくらか</li>
-											<li>初期角度<br>対称性が上下にあるのか左右にあるのか<br>あるいは Left と Right の角度のずれはあるのか</li>
-											<li>残像、速度率、色<br>見え方はどのように変化するか</li>
-											<li>グリッド、線分、低速、低FPS<br>軌道の分析</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>    
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="wrapper-shareTwitter">
-			<button class="btn btn-primary btn-large" id="shareTwitter">結果をTwitterへつぶやいてみる</button>
-		</div>
-		<div class="well">
-			<div class="wrapper-canvas">
-				<div class="wrapper-canvas-border">
-					<canvas id="canvas" width="640" height="340"></canvas>
-				</div>
-			</div>
-		</div>
-		<hr>
-		<div><!-- colorpicker初期化用の非表示フォーム -->
-			<input type="hidden" class="colorwell-general-1" value="#000000">
-			<input type="hidden" class="colorwell-left-1" value="#000000">
-			<input type="hidden" class="colorwell-left-3" value="#000000">
-			<input type="hidden" class="colorwell-right-1" value="#000000">
-			<input type="hidden" class="colorwell-right-3" value="#000000">
-		</div>
-		<footer>
-		<p>&copy; poitune 2012</p>
-		</footer>
-	</div>
- </body>
+                                                </dd>
+                                                <dt><a href="#" rel="tooltip" title="残像の強度を 0 から 1 の間で指定する。<br>・0 にすると残像は全く生まれない。<br>・1 にすると全ての像が消えずに残り続ける。<br>・前に描画した像が残ったままになっている場合は、一度残像の強度を下げると残像は正しく消える。">残像</a></dt>
+                                                <dd>
+                                                <input type="text" id="commonParam-afterimage" class="inputVal" placeholder="">
+                                                <span id="commonParam-afterimage-slider" class="slider"></span>
+                                                </dd>
+                                                <dt><a href="#" rel="tooltip" title="回転速度の倍率を 1/10 倍から 10 倍の間で指定する。<br>スライダーは線形ではなく対数軸。">速度率</a></dt>
+                                                <dd>
+                                                <input type="text" id="commonParam-speedRate" class="inputVal" placeholder="">
+                                                <span id="commonParam-speedRate-slider" class="slider"></span>
+                                                </dd>
+                                                <dt><a href="#" rel="tooltip" title="軌道の大きさの倍率を 1/10 倍から 10 倍の間で指定する。<br>スライダーは線形ではなく対数軸。">拡大率</a></dt>
+                                                <dd>
+                                                <input type="text" id="commonParam-scale" class="inputVal" placeholder="">
+                                                <span id="commonParam-scale-slider" class="slider"></span>
+                                                </dd>
+                                                <dt><a href="#" rel="tooltip" title="両方の軌道を表示するか、片方のみを表示するかを指定する。<br>片方を指定した場合は Left の軌道のみが表示される。">表示数</a></dt>
+                                                <dd>
+                                                <span id="commonParam-numberOfLocus" class="btn-group buttonset-radio">
+                                                    <button type="button" value="2" class="btn">両方</button>
+                                                    <button type="button" value="1" class="btn">片方</button>
+                                                </span>
+                                                </dd>
+                                                <dt>背景色</dt>
+                                                <dd>
+                                                <input type="text" id="commonParam-backgroundColor" class="colorwell-general-1 inputVal" placeholder="">
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">グリッド</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>表示</dt>
+                                                <dd>
+                                                <button id="commonParam-glid-showFlag" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>カラー</dt>
+                                                <dd>
+                                                <input type="text" id="commonParam-glid-color" class="colorwell-general-1 inputVal" placeholder="">
+                                                </dd>
+                                            </dl>
+                                            <div id="colorpicker-general-1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="panel-2">
+                                <div id="tabs-left">
+                                    <ul>
+                                        <li><a href="#tabs-left-1">物体</a></li>
+                                        <li><a href="#tabs-left-2">回転</a></li>
+                                        <li><a href="#tabs-left-3">線分</a></li>
+                                    </ul>
+                                    <div id="tabs-left-1">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">表示</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>原点</dt>
+                                                <dd>
+                                                <button id="locusParam-0-object-showFlag-origin" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <button id="locusParam-0-object-showFlag-hand" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <button id="locusParam-0-object-showFlag-poi" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">サイズ</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>原点</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-object-size-origin" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-object-size-origin-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-object-size-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-object-size-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-object-size-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-object-size-poi-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">カラー</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>原点</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-object-color-origin" class="colorwell-left-1 inputVal" placeholder="">
+                                                </dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-object-color-hand" class="colorwell-left-1 inputVal" placeholder="">
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-object-color-poi" class="colorwell-left-1 inputVal" placeholder="">
+                                                </dd>
+                                            </dl>
+                                            <div id="colorpicker-left-1"></div>
+                                        </div>
+                                    </div>
+                                    <div id="tabs-left-2">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">半径</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-radius-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-radius-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-radius-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-radius-poi-slider" class="slider"></span>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">角速度</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-angularVelocity-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-angularVelocity-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-angularVelocity-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-angularVelocity-poi-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">初期角度</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-angle-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-angle-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-angle-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-angle-poi-slider" class="slider"></span>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">原点座標</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>X</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-coordinates-origin-x" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-coordinates-origin-x-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>Y</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-rotation-coordinates-origin-y" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-rotation-coordinates-origin-y-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div id="tabs-left-3">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">表示</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>腕</dt>
+                                                <dd>
+                                                <button id="locusParam-0-segment-showFlag-arm" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>コード</dt>
+                                                <dd>
+                                                <button id="locusParam-0-segment-showFlag-chain" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">サイズ</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>腕</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-segment-size-arm" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-segment-size-arm-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>コード</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-segment-size-chain" class="inputVal" placeholder="">
+                                                <span id="locusParam-0-segment-size-chain-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">カラー</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>腕</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-segment-color-arm" class="colorwell-left-3 inputVal" placeholder="">
+                                                </dd>
+                                                <dt>コード</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-0-segment-color-chain" class="colorwell-left-3 inputVal" placeholder="">
+                                                </dd>
+                                            </dl>
+                                            <div id="colorpicker-left-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="panel-3">
+                                <div id="tabs-right">
+                                    <ul>
+                                        <li><a href="#tabs-right-1">物体</a></li>
+                                        <li><a href="#tabs-right-2">回転</a></li>
+                                        <li><a href="#tabs-right-3">線分</a></li>
+                                    </ul>
+                                    <div id="tabs-right-1">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">表示</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>原点</dt>
+                                                <dd>
+                                                <button id="locusParam-1-object-showFlag-origin" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <button id="locusParam-1-object-showFlag-hand" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <button id="locusParam-1-object-showFlag-poi" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">サイズ</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>原点</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-object-size-origin" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-object-size-origin-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-object-size-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-object-size-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-object-size-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-object-size-poi-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">カラー</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>原点</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-object-color-origin" class="colorwell-right-1 inputVal" placeholder="">
+                                                </dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-object-color-hand" class="colorwell-right-1 inputVal" placeholder="">
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-object-color-poi" class="colorwell-right-1 inputVal" placeholder="">
+                                                </dd>
+                                            </dl>
+                                            <div id="colorpicker-right-1"></div>
+                                        </div>
+                                    </div>
+                                    <div id="tabs-right-2">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">半径</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-radius-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-radius-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-radius-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-radius-poi-slider" class="slider"></span>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">角速度</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-angularVelocity-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-angularVelocity-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-angularVelocity-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-angularVelocity-poi-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">初期角度</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>手</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-angle-hand" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-angle-hand-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>ポイ</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-angle-poi" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-angle-poi-slider" class="slider"></span>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">原点座標</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>X</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-coordinates-origin-x" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-coordinates-origin-x-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>Y</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-rotation-coordinates-origin-y" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-rotation-coordinates-origin-y-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div id="tabs-right-3">
+                                        <div class="tabs-inner-left">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">表示</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>腕</dt>
+                                                <dd>
+                                                <button id="locusParam-1-segment-showFlag-arm" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt>コード</dt>
+                                                <dd>
+                                                <button id="locusParam-1-segment-showFlag-chain" type="button" class="btn button-toggle" value="0">OFF</button>
+                                                </dd>
+                                                <dt class="dt-column"><span class="label">サイズ</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>腕</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-segment-size-arm" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-segment-size-arm-slider" class="slider"></span>
+                                                </dd>
+                                                <dt>コード</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-segment-size-chain" class="inputVal" placeholder="">
+                                                <span id="locusParam-1-segment-size-chain-slider" class="slider"></span>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <dl class="dl-horizontal">
+                                                <dt class="dt-column"><span class="label">カラー</span></dt>
+                                                <dd class="dd-column">&nbsp;</dd>
+                                                <dt>腕</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-segment-color-arm" class="colorwell-right-3 inputVal" placeholder="">
+                                                </dd>
+                                                <dt>コード</dt>
+                                                <dd>
+                                                <input type="text" id="locusParam-1-segment-color-chain" class="colorwell-right-3 inputVal" placeholder="">
+                                                </dd>
+                                            </dl>
+                                            <div id="colorpicker-right-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="panel-4">
+                                <div id="tabs-examples">
+                                    <ul>
+                                        <li><a href="#tabs-examples-1">Examples</a></li>
+                                    </ul>
+                                    <div id="tabs-examples-1">
+                                        <div class="tabs-inner-left">
+                                            <h3>Poi trick examples</h3>
+                                            <ul id="examples-menu">
+                                                <li><a href="#">Clover</a></li>
+                                                <li><a href="#">Negative Clover</a></li>
+                                                <li><a href="#">Pentagram</a></li>
+                                                <li><a href="#">Clear Pentagram</a></li>
+                                                <li><a href="#">Hexagram</a></li>
+                                                <li><a href="#">Clear Hexagram</a></li>
+                                                <li><a href="#">Cat Eye</a></li>
+                                                <li><a href="#">Linear Cat Eye</a></li>
+                                                <li><a href="#">Isolation</a></li>
+                                            </ul>
+                                            <br>
+                                        </div>
+                                        <div class="tabs-inner-right">
+                                            <h4>Settings' hints</h4>
+                                            <ul>
+                                                <li>半径<br>比はいくらか</li>
+                                                <li>角速度<br>比はいくらか</li>
+                                                <li>初期角度<br>対称性が上下にあるのか左右にあるのか<br>あるいは Left と Right の角度のずれはあるのか</li>
+                                                <li>残像、速度率、色<br>見え方はどのように変化するか</li>
+                                                <li>グリッド、線分、低速、低FPS<br>軌道の分析</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-shareButton">
+                <a href="javascript:void(0)"><span class="badge badge-info shareButton" name="label">結果をシェアしてみる</span></a>
+                <a href="javascript:void(0)"><img src="./img/twitter.png" alt="Twitter" class="shareButton" name="twitter" /></a>
+                <a href="javascript:void(0)"><img src="./img/fb.png" alt="Facebook" class="shareButton" name="facebook" /></a>
+                <div class="urlbox">
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="well">
+                <div class="wrapper-canvas">
+                    <div class="wrapper-canvas-border">
+                        <canvas id="canvas" width="640" height="340"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper-embedButton">
+                <button class="btn btn-inverse" id="embedButton">埋め込みコードを生成</button>
+                <div class="embedCodeBox">
+                    <textarea rows="3"></textarea>
+                </div>
+            </div>
+            <hr>
+            <div><!-- colorpicker初期化用の非表示フォーム -->
+                <input type="hidden" class="colorwell-general-1" value="#000000">
+                <input type="hidden" class="colorwell-left-1" value="#000000">
+                <input type="hidden" class="colorwell-left-3" value="#000000">
+                <input type="hidden" class="colorwell-right-1" value="#000000">
+                <input type="hidden" class="colorwell-right-3" value="#000000">
+            </div>
+            <footer>
+            <p>&copy; poitune 2012</p>
+            </footer>
+        </div>
+    </body>
 </html>
 

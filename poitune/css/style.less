@@ -257,8 +257,33 @@ input, textarea, .uneditable-input {
 }
 
 
-.wrapper-shareTwitter {
-	text-align: center;
+.wrapper-shareButton {
+    text-align: center;
+    margin-bottom: 10px;
+    .badge {
+        padding: 7px;
+        font-size: 15px;
+    }
+    div.urlbox {
+        display: none;
+        input {
+            margin-top: 10px;
+            width: 200px;
+        }
+    }
+}
+
+.wrapper-embedButton {
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    div.embedCodeBox {
+        display: none;
+        textarea {
+            margin-top: 10px;
+            width: 300px;
+        }
+    }
 }
 
 
@@ -292,5 +317,14 @@ input, textarea, .uneditable-input {
 	}
 }
 
+// ===================================
+// embed
+body.embed {
+    background: none;
+    padding: 0;
+    margin: 0;
+    width: 630px;
+    height: 330px;
+}
 
 

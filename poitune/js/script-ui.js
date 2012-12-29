@@ -7,26 +7,29 @@ var _get; // GETリクエストのパラメータ
 
 $(function() {
 
-	// 初期値を設定
-	// UI構成前にすべき値のみここで指定
-	setup_initialActive_beforeSetUpUI();
+    // 埋め込み用のCanvasでないときのみUIの初期化処理をする
+    if (typeof embedFlag == "undefined") {
+        // 初期値を設定
+        // UI構成前にすべき値のみここで指定
+        setup_initialActive_beforeSetUpUI();
 
-	// UIを構成
-	setup_ui();
+        // UIを構成
+        setup_ui();
 
-	// イベントのバインド
-	setup_eventBinding();
+        // イベントのバインド
+        setup_eventBinding();
 
-	// 初期値を設定
-	setup_initialActive();
+        // 初期値を設定
+        setup_initialActive();
+    }
 
-	// GETリクエストのパラメータを取得する
-	_get = get_getRequest();
-	// パラメータがあったらそれをCanvasに復元する
-	if (_get != false) {
-		_get = decodeUrlParam(_get);
-		restoreCanvasParam(_get);
-	}
+    // GETリクエストのパラメータを取得する
+    _get = get_getRequest();
+    // パラメータがあったらそれをCanvasに復元する
+    if (_get != false) {
+        _get = decodeUrlParam(_get);
+        restoreCanvasParam(_get);
+    }
 
 });
 
@@ -276,9 +279,15 @@ function setup_eventBinding() {
 	});
 
 
-	// Twitter投稿ボタン
-	$("#shareTwitter").bind("click", function() {
-		var twitterUrl = "https://twitter.com/?status=";
+	// ソーシャルボタン
+	$(".shareButton").bind("click", function() {
+        var socialName = $(this).attr("name");
+        var socialUrl;
+        if (socialName == "twitter") {
+            socialUrl = "https://twitter.com/?status=";
+        } else if (socialName == "facebook") {
+            socialUrl = "https://www.facebook.com/share.php?u=";
+        }
 
 		// 現在のページのURLを取得
 		var protocol = window.location.protocol;
@@ -288,7 +297,7 @@ function setup_eventBinding() {
 
 		// [!] TEST: ローカルファイルだった場合はテスト用URLへ切り替え
 		if (protocol == "file:") {
-			thisUrl = "http://www.yahoo.co.jp/";
+			thisUrl = "http://poitune.wktk.so/";
 		}
 
 		// CanvasのURLパラメータを構成
@@ -311,25 +320,88 @@ function setup_eventBinding() {
 			return compressedParam;
 		})();
 
-		var twitterParam = thisUrl + "?" + compressedParam;
-		twitterParam = encodeURIComponent(twitterParam)
+		var thisSiteUrl = thisUrl + "?" + compressedParam;
+		thisSiteUrl = encodeURIComponent(thisSiteUrl)
 
 		// 先に空のウィンドウを開いておく
-		var win = window.open();
+        if (socialName != "label") {
+            var win = window.open();
+        }
 
-		if (location.pathname == "/english.html") {
-			var beforeText = "POI Simutaion I created! ";
-		} else {
-			var beforeText = "ポイの軌道をシミュレートしたよ！ ";
-		}
+        if (socialName == "twitter") {
+            if (location.pathname == "/english.html") {
+                var beforeText = "POI Simutaion I created! ";
+            } else {
+                var beforeText = "ポイの軌道をシミュレートしたよ！ ";
+            }
+        }
 		var afterText = " - by #Poitune";
-		getBitlyUrl(twitterParam, function(shortedUrl) {
+		getBitlyUrl(thisSiteUrl, function(shortedUrl) {
 			// 非同期処理での callback 関数の中になるので、この中で window.open() はポップアップブロックされて効かない。
 			//window.open(shortedUrl);
-			var tweetText = encodeURIComponent(beforeText + shortedUrl + afterText);
-			win.location.href = twitterUrl + tweetText;
+            var socialUrlParam;
+            if (socialName == "label") {
+                $(".urlbox input").val(shortedUrl);
+                $(".urlbox").show({effect: "bind", duration: 500});
+                $(".urlbox input").select();
+                return;
+            }
+            if (socialName == "twitter") {
+                socialUrlParam = encodeURIComponent(beforeText + shortedUrl + afterText);
+            } else if (socialName == "facebook") {
+                socialUrlParam = encodeURIComponent(shortedUrl);
+            }
+			win.location.href = socialUrl + socialUrlParam;
 		});
 	});
+
+
+    // 埋め込みコード生成ボタン
+    $("#embedButton").bind("click", function() {
+        // 現在のページのURLを取得
+        var protocol = window.location.protocol;
+        var hostname = window.location.hostname;
+        var pathname = window.location.pathname;
+        var thisUrl = protocol + "//" + hostname + pathname;
+        // [!] TEST: ローカルファイルだった場合はテスト用URLへ切り替え
+        if (protocol == "file:") {
+            thisUrl = "http://poitune.wktk.so/";
+        }
+
+        // CanvasのURLパラメータを構成
+        var urlParam = "?";
+        urlParam += objToUrlParam(commonParam, "commonParam");
+        urlParam += "&" + objToUrlParam(locusParam, "locusParam");
+
+        // パラメータの圧縮
+        var compressedParam = (function() {
+            // URLパラメータの生成
+            var param = "";
+            param += objToUrlParam(commonParam, "commonParam");
+            param += "&" + objToUrlParam(locusParam, "locusParam");
+
+            // 変換圧縮用のオブジェクトを生成
+            var transformObj = createTransformObj();
+
+            // URLパラメータを圧縮
+            var compressedParam = compressUrlParam(param, transformObj);
+            return compressedParam;
+        })();
+
+        // 埋め込みコード生成
+        var embedPageUrl = protocol + "//" + hostname + "/embed.html" + "?" + compressedParam;
+        var embedCode = '<iframe width="640" height="340" src="' + embedPageUrl + '" frameborder="0" scrolling="no"></iframe>';
+        console.log(embedCode);
+
+        // 埋め込みコード表示
+        $(".embedCodeBox textarea").text(embedCode);
+        if ( $(".embedCodeBox").hasClass("active") ) {
+            $(".embedCodeBox").effect({effect: "highlight", duration: 500});
+        } else {
+            $(".embedCodeBox").show({effect: "highlight", duration: 500}).addClass("active");
+        }
+        $(".embedCodeBox textarea").select();
+    });
 
 
 	// Examplesメニュー

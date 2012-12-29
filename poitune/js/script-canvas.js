@@ -17,7 +17,7 @@ var canvasAfterimageResetFlag;
 var commonParam = {
 	fps             : 30,
 	afterimage      : 0.8,
-	numberOfLocus   : 1,
+	numberOfLocus   : 2,
 	speedRate       : 1,
 	scale           : 1,
 	backgroundColor : "#000000",
