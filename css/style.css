@@ -1,0 +1,261 @@
+
+body {
+	background: #eeeeee;
+}
+
+div#container {
+	/*
+	width: 970px;
+	*/
+	margin: 20px 50px;
+	padding: 20px 20px;
+	border: 1px solid #ccc;
+	background: white;
+}
+
+h1 {
+	border-bottom: 1px solid #bbb;
+	padding: 5px 10px;
+}
+
+h2 {
+	border-left: 4px solid #bbb;
+	padding: 5px 10px;
+}
+
+#canvas {
+	border: 1px solid #777;
+	background-color: #000;
+	margin: 30px 0;
+}
+
+@font-face {
+	font-family: znikomit;
+	src: url(../font/Znikomit.otf) format("opentype");
+}
+@font-face {
+	font-family: znikomit;
+	src: url(../font/Znikomit.eot);
+}
+@font-face {
+	font-family: seshat;
+	src: url(../font/seshat.otf) format("opentype");
+}
+@font-face {
+	font-family: seshat;
+	src: url(../font/seshat.eot);
+}
+body, textarea, .ui-widget {
+	font-family: "メイリオ", "ＭＳ Ｐゴシック", sans-serif !important;
+}
+input, select {
+	font-family: Arial, "ＭＳ Ｐゴシック", sans-serif;
+}
+.header-home {
+	margin: 20px auto;
+	text-align: center;
+}
+.header-home h1 {
+	font-family: seshat;
+	font-size: 90px;
+	margin-bottom: 30px;
+}
+.header-home p {
+	font-size: 17px;
+}
+.header h1 {
+	font-family: seshat;
+	font-size: 70px;
+	margin-left: 30px;
+	padding-bottom: 10px;
+}
+.well h2 {
+	font-family: znikomit;
+	font-size: 35px;
+}
+.well p {
+	font-size: 14px;
+}
+.well p.lead {
+	font-size: 16px;
+	border-left: 5px solid #ccc;
+	margin-top: 20px;
+	padding-left: 10px;
+}
+.well hr {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #fff;
+}
+body {
+	background-image: url(../img/texture_main.jpg);
+	padding-top: 60px;
+}
+footer {
+	text-align: center;
+}
+.scroller-tab #scroller-header {
+	text-align: center;
+}
+.scroller-tab #scroller-header span.badge {
+	position: relative;
+	top: -4px;
+	left: 10px;
+}
+.scroller-tab #scroller-header span.badge a {
+	color: #fff;
+}
+.scroller-tab #scroller-header div#radio-tab a:hover {
+	color: #212121;
+}
+.scroller-tab #scroller-body {
+	margin: 20px auto;
+	border-right: 2px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.scroller-tab #scroller-body #mask {
+	overflow: hidden;
+	margin: 0 auto;
+}
+.scroller-tab #scroller-body #panel > div {
+	float: left;
+}
+.scroller-tab #scroller-body #panel > div > div {
+	float: left;
+}
+.scroller-tab #scroller-body #panel .slider {
+	width: 220px;
+	margin-left: 10px;
+	display: inline-block;
+}
+.ui-tabs {
+	background: url(../img/texture_main.jpg);
+}
+.ui-tabs .tabs-inner-left {
+	float: left;
+}
+.ui-tabs .tabs-inner-left .dl-horizontal {
+	width: 420px;
+}
+.ui-tabs .tabs-inner-left .dl-horizontal dt {
+	width: 55px;
+}
+.ui-tabs .tabs-inner-left .dl-horizontal dd {
+	margin-left: 70px;
+}
+.ui-tabs .tabs-inner-right {
+	float: left;
+}
+.ui-tabs .tabs-inner-right .dl-horizontal {
+	width: 420px;
+}
+.ui-tabs .tabs-inner-right .dl-horizontal dt {
+	width: 75px;
+}
+.ui-tabs .tabs-inner-right .dl-horizontal dd {
+	margin-left: 90px;
+}
+.ui-tabs .tabs-inner-right .farbtastic {
+	margin-left: 60px;
+}
+.ui-tabs dt.dt-column {
+	padding: 3px 0 2px 5px;
+	margin-bottom: 10px;
+}
+.ui-tabs dt.dt-column .label {
+	padding: 3px 5px;
+	font-size: 14px;
+}
+.ui-tabs dd.dd-column {
+	margin-bottom: 10px;
+}
+.ui-tabs hr {
+	margin: 0 0 10px;
+	border-top: 1px solid #ddd;
+}
+.ui-tabs #tabs-examples-1 .tabs-inner-left h3 {
+	margin-left: 10px;
+}
+.ui-tabs #tabs-examples-1 .tabs-inner-left #examples-menu {
+	margin-left: 10px;
+	width: 250px;
+}
+.ui-tabs #tabs-examples-1 .tabs-inner-right h4 {
+	margin-top: 20px;
+	margin-left: 100px;
+}
+.ui-tabs #tabs-examples-1 .tabs-inner-right ul {
+	margin: 20px 100px 20px;
+}
+.colorwell-selected {
+	font-size: 15px;
+	border-right: 4px solid red;
+	padding-right: 20px;
+	width: 140px;
+}
+.wrapper-canvas {
+	width: 652px;
+	margin: 0 auto;
+}
+.wrapper-canvas .wrapper-canvas-border {
+	border: 1px dotted #000;
+	padding: 5px 5px 0;
+}
+input, textarea, .uneditable-input {
+	width: 70px;
+}
+.btn {
+	margin-bottom: 10px;
+}
+.wrapper-shareButton {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.wrapper-shareButton .badge {
+	padding: 7px;
+	font-size: 15px;
+}
+.wrapper-shareButton div.urlbox {
+	display: none;
+}
+.wrapper-shareButton div.urlbox input {
+	margin-top: 10px;
+	width: 200px;
+}
+.wrapper-embedButton {
+	text-align: center;
+	width: 400px;
+	margin: 0 auto;
+}
+.wrapper-embedButton div.embedCodeBox {
+	display: none;
+}
+.wrapper-embedButton div.embedCodeBox textarea {
+	margin-top: 10px;
+	width: 300px;
+}
+.english-ver .ui-tabs .ui-tabs-panel {
+	padding: 1em 0.5em;
+}
+.english-ver .ui-tabs .tabs-inner-left .dl-horizontal dt {
+	width: 99px;
+}
+.english-ver .ui-tabs .tabs-inner-left .dl-horizontal dd {
+	margin-left: 110px;
+}
+.english-ver .ui-tabs .tabs-inner-right .dl-horizontal dt {
+	width: 90px;
+}
+.english-ver .ui-tabs .tabs-inner-right .dl-horizontal dd {
+	margin-left: 110px;
+}
+.english-ver .scroller-tab #scroller-body #panel .slider {
+	width: 200px;
+}
+body.embed {
+	background: none;
+	padding: 0;
+	margin: 0;
+	width: 630px;
+	height: 330px;
+}
